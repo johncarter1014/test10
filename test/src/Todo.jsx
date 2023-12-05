@@ -6,7 +6,7 @@ const Todo = (props) => {
 
   return (
     <>
-        <div key= {props.id} ><p>{props.value}</p>
+        <div key = {props.id} ><p>{props.value}</p>
         <button onClick={props.onClick}>remove</button>
         </div>
     </>

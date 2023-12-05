@@ -5,20 +5,27 @@ const App = () => {
 
  const [item , setItem] = useState("");
  const [todos , setTodos] = useState([]);
- const [selected, setSelected] = useState(true);
 
  const handleClick = event => {
     setItem(event.target.value)
  };
 
  const handleAdd = () =>{
-  let date = Date()
-  setTodos(prev => [...prev , {id: date  , value: item , isSelected: selected}])  
+  let date =  Date()
+  setTodos(prev => [...prev ,
+     {id: date  , value: item , isSelected: true}])  
  }
+function handleRemove(id)  {
+let newtodo = todos.filter((item)=> item.id !== id)
+setTodos(newtodo) 
+}
 
- const show = todos.map(todo => todo.isSelected ? <Todo id={todo.id} value={todo.value} onClick={()=>  setSelected(false)}/> : null)
- console.log(todos)
-  return (
+ const show = todos.map(todo =>  
+ <Todo id= {todo.id} value={todo.value} 
+ onClick={() => {handleRemove(todo.id)
+}} /> )
+ 
+ return (
     <>
       <input onChange={handleClick}></input>
       <button onClick={handleAdd} >Add</button>
