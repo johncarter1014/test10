@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 
 const Todo = (props) => {
-// const [isChecked, setIsChecked] = useState(false);
 
   
 

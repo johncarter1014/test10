@@ -6,7 +6,6 @@ const App = () => {
 
  const [item , setItem] = useState("");
  const [todos , setTodos] = useState([]);
- const [isChecked, setIsChecked] = useState(false);
 
 
  const handleClick = event => {
@@ -17,10 +16,10 @@ const App = () => {
   const min = 1;
   const max = 900;
   const rand = min + Math.random() * (max - min);
-  // let date =  Date()
+  
   setTodos(prev => item ?  [...prev ,
      {key: rand  , value: item ,
-      Checked : isChecked }] : prev) 
+      Checked : false }] : prev) 
   setItem("")
  }
 
@@ -30,23 +29,15 @@ setTodos(newtodo)
 }
 const handleCheck = (num) => {
  let newList = todos.map((ele) => ele.key === num ?
-  // ele
-  {... ele , Checked : setIsChecked(prev => !prev) }
-  // console.log(ele)
-  // console.log(ele.key, 'than', num)
-  // {...ele , Checked : setIsChecked(prev => !prev) }  
-  : ele )
-//  {...ele , Checked : setIsChecked(prev => prev) }) 
-  // setTodos(newList)
-  console.log(newList)
-//  console.log(num)
+  {... ele , Checked : !ele.Checked } : ele )
+   setTodos(newList)
 } 
 
  const show = todos.map(todo => <div key={todo.key}>
- <Todo value={todo.value} 
- check={() => {handleCheck(todo.key) }}
+ <Todo  value={todo.value} 
+ check={()=> {handleCheck(todo.key)}}
  click={() => {handleRemove(todo.key)}} 
- ischeck = {isChecked} /> 
+ ischeck = {todo.Checked} /> 
  </div> )
  
 
