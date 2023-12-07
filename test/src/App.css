@@ -1,0 +1,10 @@
+.todo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.done{
+    text-decoration: line-through;
+    color: gray;
+}

@@ -1,15 +1,16 @@
 import React from 'react'
 
+
 const Todo = (props) => {
 
   
 
   return (
-    <>
-        <div key = {props.id} ><p>{props.value}</p>
-        <button onClick={props.onClick}>remove</button>
+        <div className='todo' key= {props.id} >
+          <button onClick={props.check}> { props.ischeck ? "check" : "not checked"}</button>
+          <p className={props.ischeck ? "done" : null} >{props.value}</p>
+          <button onClick={props.click}>remove</button>
         </div>
-    </>
   )
 }
 
