@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 
 const Todo = (props) => {
+// const [isChecked, setIsChecked] = useState(false);
 
   
 
   return (
-        <div className='todo' key= {props.id} >
-          <button onClick={props.check}> { props.ischeck ? "check" : "not checked"}</button>
+        <div className='todo' >
+          <button onClick={props.check}> { props.ischeck ? "checked" : "not checked"}</button>
           <p className={props.ischeck ? "done" : null} >{props.value}</p>
           <button onClick={props.click}>remove</button>
         </div>

@@ -14,9 +14,13 @@ const App = () => {
  };
 
  const handleAdd = () =>{
-  let date =  Date()
+  const min = 1;
+  const max = 900;
+  const rand = min + Math.random() * (max - min);
+  // let date =  Date()
   setTodos(prev => item ?  [...prev ,
-     {key: date  , value: item , isSelected: true, Checked : isChecked }] : prev) 
+     {key: rand  , value: item ,
+      Checked : isChecked }] : prev) 
   setItem("")
  }
 
@@ -24,16 +28,26 @@ function handleRemove(id)  {
 let newtodo = todos.filter((item)=> item.key !== id)
 setTodos(newtodo) 
 }
-const handleCheck = (key) => {
- let newList = todos.map((ele) => ele.key == key ? {...ele , Checked : setIsChecked(prev => !prev) }  : 
- {...ele , Checked : setIsChecked(prev => prev) })
- setTodos(newList)
- //console.log(newList)
+const handleCheck = (num) => {
+ let newList = todos.map((ele) => ele.key === num ?
+  // ele
+  {... ele , Checked : setIsChecked(prev => !prev) }
+  // console.log(ele)
+  // console.log(ele.key, 'than', num)
+  // {...ele , Checked : setIsChecked(prev => !prev) }  
+  : ele )
+//  {...ele , Checked : setIsChecked(prev => prev) }) 
+  // setTodos(newList)
+  console.log(newList)
+//  console.log(num)
 } 
 
- const show = todos.map(todo =>  
- <Todo id= {todo.key} value={todo.value} check={() => {handleCheck(todo.key) }}
- click={() => {handleRemove(todo.key)}} ischeck = {isChecked} /> )
+ const show = todos.map(todo => <div key={todo.key}>
+ <Todo value={todo.value} 
+ check={() => {handleCheck(todo.key) }}
+ click={() => {handleRemove(todo.key)}} 
+ ischeck = {isChecked} /> 
+ </div> )
  
 
  return (
@@ -41,7 +55,6 @@ const handleCheck = (key) => {
       <input onChange={handleClick} value={item}></input>
       <button onClick={handleAdd} >Add</button>
       {show}
-      
     </>
   )
 }
